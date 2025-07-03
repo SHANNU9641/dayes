@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -12,8 +12,13 @@
       background: linear-gradient(-45deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 400% 400%;
       animation: rainbow 15s ease infinite;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Pacifico', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
 
     @keyframes rainbow {
@@ -42,20 +47,37 @@
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
+    .photo-frame {
+      margin-top: 50px;
+      width: 350px;
+      padding: 10px;
+      background: white;
+      border-radius: 25px;
+      border: 12px solid transparent;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_Heart.svg/768px-Red_Heart.svg.png");
+      background-size: 35px;
+      background-repeat: round;
+      z-index: 1;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      border-radius: 15px;
+      display: block;
+    }
+
     .message {
-      position: absolute;
-      top: 50%;
-      left: 55%;
-      transform: translate(-50%, -50%);
+      margin-top: 20px;
+      width: 80%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.5);
       color: #fff;
-      font-size: 1.5rem;
-      width: 50%;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
       padding: 30px;
       border-radius: 20px;
+      text-align: center;
+      font-size: 1.4rem;
       box-shadow: 0 0 20px #fff;
-      z-index: 2;
+      z-index: 1;
     }
 
     .slow-text span {
@@ -70,9 +92,9 @@
     }
 
     .button {
-      margin-top: 30px;
+      margin-top: 25px;
       padding: 12px 25px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       background: #fff;
       color: #e91e63;
       border: none;
@@ -102,40 +124,16 @@
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(100px) scale(0.5); opacity: 0; }
     }
-
-    .photo-frame {
-      position: absolute;
-      top: 50%;
-      left: 10%;
-      transform: translateY(-50%);
-      z-index: 2;
-      width: 350px;
-      padding: 10px;
-      background: white;
-      border-radius: 25px;
-      border: 12px solid transparent;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_Heart.svg/768px-Red_Heart.svg.png");
-      background-size: 35px;
-      background-repeat: round;
-    }
-
-    .photo-frame img {
-      width: 100%;
-      border-radius: 15px;
-      display: block;
-    }
   </style>
 </head>
 <body>
 
 <div class="confetti" id="confetti"></div>
 
-<!-- Floating Birthday Girl Photo with Heart Frame -->
 <div class="photo-frame">
   <img src="vasavi.png" alt="Vasavi's Photo" />
 </div>
 
-<!-- Birthday Message -->
 <div class="message">
   <div class="slow-text" id="birthdayText"></div>
   <button class="button" onclick="sprinkleStars()">Thank You 💖</button>
