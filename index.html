@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Vasavi 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      animation: rainbow 15s ease infinite;
+      overflow: hidden;
+      font-family: 'Pacifico', cursive;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .confetti-item {
+      position: absolute;
+      font-size: 28px;
+      animation: fall 6s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.5rem;
+      width: 50%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #fff;
+      z-index: 2;
+    }
+
+    .slow-text span {
+      opacity: 0;
+      animation: flowText 0.1s forwards;
+    }
+
+    @keyframes flowText {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1.3rem;
+      background: #fff;
+      color: #e91e63;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .button:hover {
+      background: #ffebee;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .sprinkle-effect {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      animation: sparkle 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(100px) scale(0.5); opacity: 0; }
+    }
+
+    .photo-frame {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 350px;
+      padding: 10px;
+      background: white;
+      border-radius: 25px;
+      border: 12px solid transparent;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_Heart.svg/768px-Red_Heart.svg.png");
+      background-size: 35px;
+      background-repeat: round;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      border-radius: 15px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<!-- Floating Birthday Girl Photo with Heart Frame -->
+<div class="photo-frame">
+  <img src="vasavi.png" alt="Vasavi's Photo" />
+</div>
+
+<!-- Birthday Message -->
+<div class="message">
+  <div class="slow-text" id="birthdayText"></div>
+  <button class="button" onclick="sprinkleStars()">Thank You 💖</button>
+</div>
+
+<script>
+  const confettiIcons = ["🎂", "🎉", "🎈", "✨", "🌟", "💛", "🥳", "🧁", "💖", "🍰"];
+  const confettiContainer = document.getElementById('confetti');
+  for (let i = 0; i < 150; i++) {
+    const item = document.createElement('div');
+    item.className = 'confetti-item';
+    item.textContent = confettiIcons[Math.floor(Math.random() * confettiIcons.length)];
+    item.style.left = Math.random() * 100 + 'vw';
+    item.style.animationDelay = Math.random() * 5 + 's';
+    item.style.color = ['gold', 'silver', 'black', 'hotpink', 'deeppink', 'purple'][Math.floor(Math.random() * 6)];
+    confettiContainer.appendChild(item);
+  }
+
+  const message = `🎉 HAPPY BIRTHDAY VASAVI! 🎂🎈\n\nLook who’s officially leveling up today! 💫 The legend, the queen, the absolute powerhouse — YOU! 🦸‍♀️✨\n\nYou’re not just growing older — you’re growing bolder, brighter, and even more unstoppable (like a WiFi signal in an exam 😂).\n\nDream big, laugh harder, glow brighter — and walk through life like it’s your red carpet. 💃🌟\n\nStay awesome. Stay wild. Stay YOU.\nHappy Birthday once again, superstar! 💖`;
+
+  const container = document.getElementById('birthdayText');
+  let i = 0;
+  function typeWriter() {
+    if (i < message.length) {
+      const span = document.createElement('span');
+      span.textContent = message[i] === '\n' ? '\n' : message[i];
+      container.appendChild(span);
+      if (message[i] === '\n') container.appendChild(document.createElement("br"));
+      span.style.animationDelay = `${i * 0.05}s`;
+      i++;
+      setTimeout(typeWriter, 50);
+    }
+  }
+  typeWriter();
+
+  function sprinkleStars() {
+    for (let i = 0; i < 120; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sprinkle-effect';
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.background = `hsl(${Math.random()*360}, 100%, 90%)`;
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }
+  }
+</script>
+
+</body>
+</html>
