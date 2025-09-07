@@ -1,186 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Vasavi 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Varsha 🎉</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(-45deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 400% 400%;
-      animation: rainbow 15s ease infinite;
+      font-family: "Lucida Handwriting", cursive;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 1400% 1400%;
+      animation: rainbowBG 20s ease infinite;
+      position: relative;
       overflow-x: hidden;
-      font-family: 'Pacifico', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
     }
 
-    @keyframes rainbow {
+    @keyframes rainbowBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    .confetti {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
+    .container {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
     }
 
-    .confetti-item {
-      position: absolute;
-      font-size: 28px;
-      animation: fall 6s linear infinite;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-
-    .photo-frame {
-      margin-top: 50px;
-      width: 350px;
-      padding: 10px;
-      background: white;
-      border-radius: 25px;
-      border: 12px solid transparent;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Red_Heart.svg/768px-Red_Heart.svg.png");
-      background-size: 35px;
-      background-repeat: round;
-      z-index: 1;
-    }
-
-    .photo-frame img {
-      width: 100%;
-      border-radius: 15px;
-      display: block;
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 2px 5px #000;
+      font-family: "Brush Script MT", cursive;
+      margin-bottom: 20px;
     }
 
     .message {
-      margin-top: 20px;
-      width: 80%;
-      max-width: 600px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
       font-size: 1.4rem;
-      box-shadow: 0 0 20px #fff;
+      color: #fff;
+      line-height: 1.8;
+      text-align: left;
+      white-space: pre-line;
+      border-left: 3px solid #fff;
+      padding-left: 20px;
+      margin: 20px 0;
+      display: inline-block;
+      position: relative;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    .pen {
+      position: absolute;
+      right: -30px;
+      top: 0;
+      font-size: 1.5rem;
+      color: #fff;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .photo {
+      margin: 30px 0;
+    }
+
+    .photo img {
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo img:hover {
+      transform: scale(1.1);
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .popup img {
+      margin: 5% auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 20px;
+    }
+
+    .popup:target {
+      display: block;
+    }
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: pink;
+      font-size: 24px;
+      text-shadow: 1px 1px 2px #000;
+      animation: fall 10s linear infinite;
       z-index: 1;
     }
 
-    .slow-text span {
-      opacity: 0;
-      animation: flowText 0.1s forwards;
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    @keyframes flowText {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .button {
-      margin-top: 25px;
-      padding: 12px 25px;
-      font-size: 1.2rem;
-      background: #fff;
-      color: #e91e63;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-family: 'Pacifico', cursive;
-    }
-
-    .button:hover {
-      background: #ffebee;
-      box-shadow: 0 0 10px #fff;
-    }
-
-    .sprinkle-effect {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
-      animation: sparkle 2s ease-out forwards;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    @keyframes sparkle {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(100px) scale(0.5); opacity: 0; }
+    @media (max-width:520px){
+      h1 { font-size: 2rem; }
+      .message { font-size: 1.1rem; padding-left: 12px; }
+      .photo img { width: 180px; }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>✨ Happy Birthday Varsha ✨</h1>
 
-<div class="confetti" id="confetti"></div>
+    <div class="message" id="message">
+      <span id="text"></span><span class="pen">🖊️</span>
+    </div>
 
-<div class="photo-frame">
-  <img src="vasavi.png" alt="Vasavi's Photo" />
-</div>
+    <div class="photo">
+      <a href="#popup1">
+        <img src="varsha.png" alt="Varsha Photo">
+      </a>
+    </div>
 
-<div class="message">
-  <div class="slow-text" id="birthdayText"></div>
-  <button class="button" onclick="sprinkleStars()">Thank You 💖</button>
-</div>
+    <div id="popup1" class="popup">
+      <a href="#"><img src="varsha.png" alt="Varsha Popup"></a>
+    </div>
+  </div>
 
-<script>
-  const confettiIcons = ["🎂", "🎉", "🎈", "✨", "🌟", "💛", "🥳", "🧁", "💖", "🍰"];
-  const confettiContainer = document.getElementById('confetti');
-  for (let i = 0; i < 150; i++) {
-    const item = document.createElement('div');
-    item.className = 'confetti-item';
-    item.textContent = confettiIcons[Math.floor(Math.random() * confettiIcons.length)];
-    item.style.left = Math.random() * 100 + 'vw';
-    item.style.animationDelay = Math.random() * 5 + 's';
-    item.style.color = ['gold', 'silver', 'black', 'hotpink', 'deeppink', 'purple'][Math.floor(Math.random() * 6)];
-    confettiContainer.appendChild(item);
-  }
+  <script>
+    const lines = [
+      "Dear Varsha,",
+      "On this special day, I just want to remind you how precious you are to me.",
+      "You are not just my best friend, but someone who adds light and joy to my life.",
+      "Every laugh, every memory we share is priceless and close to my heart.",
+      "Shannu feels truly blessed to have you in this journey of friendship.",
+      "May this year bring you endless happiness, success, and love.",
+      "Happy Birthday once again, Varsha 💖"
+    ];
 
-  const message = `🎉 HAPPY BIRTHDAY VASAVI! 🎂🎈\n\nLook who’s officially leveling up today! 💫 The legend, the queen, the absolute powerhouse — YOU! 🦸‍♀️✨\n\nYou’re not just growing older — you’re growing bolder, brighter, and even more unstoppable (like a WiFi signal in an exam 😂).\n\nDream big, laugh harder, glow brighter — and walk through life like it’s your red carpet. 💃🌟\n\nStay awesome. Stay wild. Stay YOU.\nHappy Birthday once again, superstar! 💖`;
+    let index = 0;
+    let lineIndex = 0;
+    const speed = 60;
+    const textElement = document.getElementById("text");
 
-  const container = document.getElementById('birthdayText');
-  let i = 0;
-  function typeWriter() {
-    if (i < message.length) {
-      const span = document.createElement('span');
-      span.textContent = message[i] === '\n' ? '\n' : message[i];
-      container.appendChild(span);
-      if (message[i] === '\n') container.appendChild(document.createElement("br"));
-      span.style.animationDelay = `${i * 0.05}s`;
-      i++;
-      setTimeout(typeWriter, 50);
+    function typeLine() {
+      if (index < lines.length) {
+        if (lineIndex < lines[index].length) {
+          textElement.textContent += lines[index][lineIndex];
+          lineIndex++;
+          setTimeout(typeLine, speed);
+        } else {
+          textElement.textContent += "\\n";
+          index++;
+          lineIndex = 0;
+          setTimeout(typeLine, 500);
+        }
+      }
     }
-  }
-  typeWriter();
 
-  function sprinkleStars() {
-    for (let i = 0; i < 120; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sprinkle-effect';
-      sparkle.style.left = Math.random() * window.innerWidth + 'px';
-      sparkle.style.top = Math.random() * window.innerHeight + 'px';
-      sparkle.style.background = `hsl(${Math.random()*360}, 100%, 90%)`;
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 2000);
+    window.onload = () => {
+      typeLine();
+      // Generate hearts continuously
+      setInterval(createHeart, 800);
+    };
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
     }
-  }
-</script>
-
+  </script>
 </body>
 </html>
