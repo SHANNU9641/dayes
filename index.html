@@ -1,205 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Varsha 🎉</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Lucida Handwriting", cursive;
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 1400% 1400%;
-      animation: rainbowBG 20s ease infinite;
-      position: relative;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    @keyframes rainbowBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      position: relative;
-      z-index: 2;
-      padding: 40px;
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #fff;
-      text-shadow: 2px 2px 5px #000;
-      font-family: "Brush Script MT", cursive;
-      margin-bottom: 20px;
-    }
-
-    .message {
-      font-size: 1.4rem;
-      color: #fff;
-      line-height: 1.8;
-      text-align: left;
-      white-space: pre-line;
-      border-left: 3px solid #fff;
-      padding-left: 20px;
-      margin: 20px 0;
-      display: inline-block;
-      position: relative;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
-
-    .pen {
-      position: absolute;
-      right: -30px;
-      top: 0;
-      font-size: 1.5rem;
-      color: #fff;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .photo {
-      margin: 30px 0;
-    }
-
-    .photo img {
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .photo img:hover {
-      transform: scale(1.1);
-    }
-
-    .popup {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-    }
-
-    .popup img {
-      margin: 5% auto;
-      display: block;
-      max-width: 80%;
-      max-height: 80%;
-      border-radius: 20px;
-    }
-
-    .popup:target {
-      display: block;
-    }
-
-    /* Falling hearts */
-    .heart {
-      position: fixed;
-      top: -10px;
-      color: pink;
-      font-size: 24px;
-      text-shadow: 1px 1px 2px #000;
-      animation: fall 10s linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
-    @media (max-width:520px){
-      h1 { font-size: 2rem; }
-      .message { font-size: 1.1rem; padding-left: 12px; }
-      .photo img { width: 180px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Varsha!</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body, html { width:100%; height:100%; font-family: 'Great Vibes', cursive; background-color:#fff8f0; overflow-x:hidden; }
+.background { position: fixed; top:0; left:0; width:100%; height:100%; background: url('background.jpg') no-repeat center center/cover; opacity:0.3; z-index:-2; }
+#confetti { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
+.container { display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+.message-container { max-width:800px; font-size:2em; color:#ff4d6d; line-height:1.8em; text-align:center; }
+.message-container img { max-width:100%; height:auto; border-radius:20px; margin:20px 0; box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+@media (max-width:768px) { .message-container { font-size:1.5em; } }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>✨ Happy Birthday Varsha ✨</h1>
+<div class="container">
+    <div class="background"></div>
+    <canvas id="confetti"></canvas>
+    <div class="message-container" id="message-container"></div>
+</div>
 
-    <div class="message" id="message">
-      <span id="text"></span><span class="pen">🖊️</span>
-    </div>
+<script>
+// Complete heartfelt message
+const lines = [
+    "Dear Varsha, 💖",
+    "On your special day, I want you to know,",
+    "Our friendship means the world to me.",
+    "Every smile, every laugh, and even our quiet moments,",
+    "Have been blessings I will always treasure.",
+    "You inspire me, support me, and make life brighter!",
+    "<img src='varsha1.jpg' alt='Varsha Picture 1'>",
+    "I am so grateful for every memory we've shared,",
+    "I've realized that 'home' represents in a person",
+    "And for me, that feeling has always been with you.",
+    "I am excited for all the beautiful moments ahead.",
+    "You deserve endless happiness, love, and laughter.",
+    "<img src='varsha2.jpg' alt='Varsha Picture 2'>",
+    "Happy Birthday to my dearest friend! 🎂🎉",
+    "With all my heart,",
+    "Your friend 💖"
+];
 
-    <div class="photo">
-      <a href="#popup1">
-        <img src="varsha.png" alt="Varsha Photo">
-      </a>
-    </div>
+const container = document.getElementById('message-container');
+let lineIndex = 0;
+let charIndex = 0;
 
-    <div id="popup1" class="popup">
-      <a href="#"><img src="varsha.png" alt="Varsha Popup"></a>
-    </div>
-  </div>
+// Letter-by-letter animation
+function typeLine() {
+    if (lineIndex >= lines.length) return;
+    const line = lines[lineIndex];
 
-  <script>
-    const lines = [
-      "Dear Varsha,",
-      "On this special day, I just want to remind you how precious you are to me.",
-      "You are not just my best friend, but someone who adds light and joy to my life.",
-      "Every laugh, every memory we share is priceless and close to my heart.",
-      "Shannu feels truly blessed to have you in this journey of friendship.",
-      "May this year bring you endless happiness, success, and love.",
-      "Happy Birthday once again, Varsha 💖"
-    ];
-
-    let index = 0;
-    let lineIndex = 0;
-    const speed = 60;
-    const textElement = document.getElementById("text");
-
-    function typeLine() {
-      if (index < lines.length) {
-        if (lineIndex < lines[index].length) {
-          textElement.textContent += lines[index][lineIndex];
-          lineIndex++;
-          setTimeout(typeLine, speed);
-        } else {
-          textElement.textContent += "\\n";
-          index++;
-          lineIndex = 0;
-          setTimeout(typeLine, 500);
-        }
-      }
+    if (line.startsWith('<img')) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = line;
+        container.appendChild(tempDiv.firstChild);
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeLine, 500);
+        return;
     }
 
-    window.onload = () => {
-      typeLine();
-      // Generate hearts continuously
-      setInterval(createHeart, 800);
-    };
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 10000);
+    if (charIndex === 0) {
+        const div = document.createElement('div');
+        div.setAttribute('id','currentLine');
+        container.appendChild(div);
     }
-  </script>
+
+    const currentLine = document.getElementById('currentLine');
+    currentLine.innerHTML += line.charAt(charIndex);
+    charIndex++;
+
+    if (charIndex < line.length) {
+        setTimeout(typeLine, 80);
+    } else {
+        currentLine.removeAttribute('id');
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeLine, 600);
+    }
+}
+
+typeLine();
+
+// Confetti animation
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confettiCount = 100;
+const confetti = [];
+for(let i=0;i<confettiCount;i++){
+    confetti.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*6+2,
+        d: Math.random()*confettiCount,
+        color: `hsl(${Math.random()*360}, 100%, 50%)`,
+        tilt: Math.random()*10-10,
+        tiltAngleIncrement: Math.random()*0.07+0.05,
+        tiltAngle:0
+    });
+}
+
+function drawConfetti(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach(c=>{
+        ctx.beginPath();
+        ctx.lineWidth=c.r/2;
+        ctx.strokeStyle=c.color;
+        ctx.moveTo(c.x + c.tilt + c.r/4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r/4);
+        ctx.stroke();
+    });
+    updateConfetti();
+}
+
+function updateConfetti(){
+    confetti.forEach(c=>{
+        c.tiltAngle += c.tiltAngleIncrement;
+        c.y += (Math.cos(c.d)+3+c.r/2)/2;
+        c.x += Math.sin(c.d);
+        c.tilt = Math.sin(c.tiltAngle)*15;
+        if(c.y > canvas.height){ c.x = Math.random()*canvas.width; c.y = -10; }
+    });
+}
+
+setInterval(drawConfetti,20);
+window.addEventListener('resize', ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
 </body>
 </html>
